@@ -17,5 +17,8 @@ export const { handlers, auth, signIn } = NextAuth({
     strategy: "jwt",
     maxAge: 43200, // 12 hours
   },
+  pages: {
+    signIn: "/signin",
+  },
   debug: process.env.NODE_ENV === "development",
 } satisfies NextAuthConfig);

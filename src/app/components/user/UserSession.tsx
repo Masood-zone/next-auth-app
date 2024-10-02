@@ -9,30 +9,27 @@ export default function UserSession() {
   return (
     <main
       className={clx(
-        "mt-5 flex justify-center text-black w-[350px] p-3 rounded-md",
-        session && "bg-gray-300/90"
+        "mt-5 flex justify-center text-black w-[350px] p-3 rounded-md"
       )}
     >
       <div className="flex flex-col space-y-4">
         {session && (
-          <>
-            <h2 className="text-xl font-bold">User Profile</h2>
-            {/* User Profile */}
+          <div className="flex flex-col items-center space-y-4 bg-gray-700 w-96 h-96 my-10 mx-auto p-5 justify-center">
+            <h1 className="text-2xl">Welcome back!</h1>
             <img
-              src={session.user?.image || "/default-profile.png"}
-              alt="User Profile"
-              className="rounded-full w-20 h-20"
+              src={session?.user?.image}
+              alt={session?.user?.name}
+              className="rounded-full h-20 w-20"
             />
-            <pre>Name:{JSON.stringify(session.user?.name)} </pre>{" "}
-            <pre>Email:{JSON.stringify(session.user?.email)} </pre>{" "}
+            <h1 className="text-2xl">{session?.user?.name}</h1>
+            <p className="text-gray-500">{session?.user?.email}</p>
             <button
-              className="mt-3 bg-blue-500 p-3 text-white"
-              onClick={() => signOut()}
+              onClick={() => signOut({ callbackUrl: "/" })}
+              className="bg-red-500 text-white px-4 py-2 rounded-md"
             >
-              {" "}
-              Sign out{" "}
-            </button>{" "}
-          </>
+              Log out
+            </button>
+          </div>
         )}{" "}
         {!session && pathname !== "/signin" && (
           <button
